@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Gallery</title>
+    <style>
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .thumbnail {
+            width: 150px;
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .thumbnail img {
+            width: 100%;
+            height: auto;
+        }
+        
+        .menu {
+            display: none;
+            position: absolute;
+            top: 50px;
+            right: 10px;
+            background-color: #fff;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Willkommen in der Fotogalerie!</h1>
+    
+    <div>
+        <!-- Button zum Hochladen von Bildern -->
+        <button id="postPicBtn">PostPIC</button>
+        <!-- Button zum Generieren neuer Accounts -->
+        <button id="generateAccBtn" style="display:none;">GenerateACC</button>
+    </div>
+</div>
+
+<div class="menu" id="menu">
+    <h3>Bild hochladen</h3>
+    <input type="file" id="imageInput">
+    <button id="uploadBtn">Hochladen</button>
+</div>
+
+<div class="gallery">
+    <!-- Hier werden die hochgeladenen Bilder angezeigt -->
+</div>
+
+<script>
+// Überprüfen, ob der Benutzer ein spezieller Account ist
+var speziellerAccount = true; // Beispiel: Hier den Wert entsprechend der Authentifizierung des Benutzers setzen
+
+// Menü anzeigen, wenn der spezielle Account angemeldet ist
+if (speziellerAccount) {
+    document.getElementById('generateAccBtn').style.display = 'block';
+}
+
+// Event-Listener für den PostPIC Button
+document.getElementById('postPicBtn').addEventListener('click', function() {
+    if (speziellerAccount) {
+        document.getElementById('menu').style.display = 'block';
+    }
+});
+
+// Event-Listener für den Upload Button
+document.getElementById('uploadBtn').addEventListener('click', function() {
+    // Hier könnten Sie den Code einfügen, um das Bild hochzuladen und anzuzeigen
+    // Hier ist ein Beispiel, wie Sie das Bild auf der Seite anzeigen können:
+    var imageInput = document.getElementById('imageInput');
+    var gallery = document.querySelector('.gallery');
+    var file = imageInput.files[0];
+    var reader = new FileReader();
+    
+    reader.onload = function(e) {
+        var thumbnail = document.createElement('div');
+        thumbnail.classList.add('thumbnail');
+        thumbnail.innerHTML = '<img src="' + e.target.result + '" alt="Bild">';
+        gallery.appendChild(thumbnail);
+    };
+    
+    reader.readAsDataURL(file);
+});
+</script>
+
+</body>
+</html>

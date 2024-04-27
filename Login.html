@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+
+<h1>Melde dich zuerst an!</h1>
+<h2>Gib deine Zugangsdaten ein!</h2>
+
+<form id="loginForm">
+    <input id="benutzername" name="benutzername" placeholder="Benutzername">
+    <input id="passwort" name="passwort" type="password" placeholder="Passwort">
+    <button type="submit">Anmelden</button>
+</form>
+
+<script>
+document.getElementById('loginForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Formular nicht standardmäßig absenden
+
+    // Benutzerdaten überprüfen
+    var benutzername = document.getElementById('benutzername').value;
+    var passwort = document.getElementById('passwort').value;
+
+    // Beispiel für die Überprüfung der Anmeldeinformationen
+    var benutzerdaten = {
+        "normaler_benutzer": "passwort1", // Normaler Benutzer
+        "jannik": "jannik" // Spezieller Account für das Hochladen von Bildern
+    };
+
+    if (benutzerdaten[benutzername] && benutzerdaten[benutzername] === passwort) {
+        alert("Anmeldung erfolgreich!");
+        // Weiterleitung zur Seite fotos.html
+        window.location.href = "fotos.html";
+    } else {
+        alert("Falsche Zugangsdaten. Bitte erneut versuchen.");
+    }
+});
+</script>
+
+</body>
+</html>
